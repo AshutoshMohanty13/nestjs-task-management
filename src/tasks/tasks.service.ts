@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Task, TaskStatus} from './tasks.model';
 import { v4 as uuid } from 'uuid';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -14,9 +14,14 @@ export class TasksService {
     }
 
     getTaskById(id: string): Task {
-        return this.tasks.find((ele) => [
+
+        const found = this.tasks.find((ele) => [
             ele.id == id
         ]);
+
+        if (!found) {
+            throw new NotFoundException(`Task with ${id} not found.`);
+        } return found;
     }
 
     getTasksWithFilter(filterDto: GetTasksFilterDto): Task[]{
