@@ -17,7 +17,11 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("/swagger", app, document);
 
+  //this is use validation pipes globally and generally used in the DTOs.
   app.useGlobalPipes(new ValidationPipe());
+
+  //to create a complete CRUD automatically we use the following command i.e. nest g resource fileName
+
   await app.listen(3000);
 }
 bootstrap();

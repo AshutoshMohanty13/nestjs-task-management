@@ -3,6 +3,7 @@ import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { GraphQLModule } from '@nestjs/graphql';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { GraphQLModule } from '@nestjs/graphql';
       autoLoadEntities: true,
       synchronize: true
       
-    })
+    }),
+    UsersModule
   ],
   
 })
